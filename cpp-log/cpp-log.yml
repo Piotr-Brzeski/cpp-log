@@ -1,0 +1,10 @@
+targets:
+  cpp-log:
+    platform: macOS
+    type: library.static
+    sources:
+      - path: log.cpp
+        group: cpp-log
+      - path: log.h
+        group: cpp-log
+        buildPhase: none
