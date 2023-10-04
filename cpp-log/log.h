@@ -10,9 +10,18 @@
 
 #include <string>
 
+#ifndef __clang__
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wbuiltin-declaration-mismatch"
+#endif
+
 namespace log {
 
 void log(const char* message);
 void log(std::string const& message);
 
 }
+
+#ifndef __clang__
+	#pragma GCC diagnostic pop
+#endif
