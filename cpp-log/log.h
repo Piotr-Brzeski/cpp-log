@@ -1,6 +1,6 @@
 //
 //  log.h
-//  Log
+//  cpp-log
 //
 //  Created by Piotr Brzeski on 2023-10-04.
 //  Copyright © 2023 Brzeski.net. All rights reserved.
@@ -9,19 +9,15 @@
 #pragma once
 
 #include <string>
+#include <memory>
 
-#ifndef __clang__
-	#pragma GCC diagnostic push
-	#pragma GCC diagnostic ignored "-Wbuiltin-declaration-mismatch"
-#endif
+namespace logger {
 
-namespace log {
+class object;
 
-void log(const char* message);
-void log(std::string const& message);
+std::shared_ptr<object> start();
+
+void log(const char* msg);
+void log(std::string msg);
 
 }
-
-#ifndef __clang__
-	#pragma GCC diagnostic pop
-#endif

@@ -1,0 +1,13 @@
+targets:
+  cpp-log-test:
+    platform: macOS
+    type: tool
+    dependencies:
+      - target: cpp-log
+        link: true
+    settings:
+      HEADER_SEARCH_PATHS:
+        - ${SRCROOT}
+    sources:
+      - path: test.cpp
+        group: cpp-log-test

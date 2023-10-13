@@ -8,3 +8,13 @@ targets:
       - path: log.h
         group: cpp-log
         buildPhase: none
+      - path: message.cpp
+        group: cpp-log
+      - path: message.h
+        group: cpp-log
+        buildPhase: none
+      - path: object.cpp
+        group: cpp-log
+      - path: object.h
+        group: cpp-log
+        buildPhase: none

@@ -20,3 +20,4 @@ settings:
 
 include:
   - cpp-log/cpp-log.yml
+  - test/test.yml
