@@ -18,3 +18,8 @@ targets:
       - path: object.h
         group: cpp-log
         buildPhase: none
+      - path: target.cpp
+        group: cpp-log
+      - path: target.h
+        group: cpp-log
+        buildPhase: none

@@ -13,35 +13,6 @@
 
 using namespace logger;
 
-namespace {
-
-void log_message(message& message) {
-	static std::string str;
-	message.format(str);
-	std::cout << str << std::endl;
-}
-
-void log_messages(std::vector<message::ptr>& messages) {
-	switch(messages.size()) {
-		case 0:
-			return;
-		case 1:
-			log_message(*messages.front());
-			break;
-		default:
-			std::ranges::sort(messages, [](auto& a, auto&b){
-				return a->time() < b->time();
-			});
-			for(auto& message : messages) {
-				log_message(*message);
-			}
-			break;
-	}
-}
-
-}
-
-
 object::~object() {
 	{
 		auto lock = std::lock_guard(m_mutex);
@@ -53,6 +24,10 @@ object::~object() {
 	if(m_thread.joinable()) {
 		m_thread.join();
 	}
+}
+
+void object::add_target(target::ptr target) {
+	m_targets.push_back(std::move(target));
 }
 
 void object::start() {
@@ -109,4 +84,29 @@ void object::get_empty_message(message::ptr& msg) {
 		}
 	}
 	msg = std::make_unique<message>();
+}
+
+void object::log_messages(std::vector<message::ptr>& messages) {
+	switch(messages.size()) {
+		case 0:
+			return;
+		case 1:
+			log_message(*messages.front());
+			break;
+		default:
+			std::ranges::sort(messages, [](auto& a, auto&b){
+				return a->time() < b->time();
+			});
+			for(auto& message : messages) {
+				log_message(*message);
+			}
+			break;
+	}
+}
+
+void object::log_message(message& message) {
+	message.format(m_formatted_message);
+	for(auto& target : m_targets) {
+		target->log(m_formatted_message);
+	}
 }

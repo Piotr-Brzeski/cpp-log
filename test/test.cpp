@@ -13,7 +13,7 @@
 int main(int argc, const char * argv[]) {
 	logger::log("Not started");
 	{
-		auto log = logger::start();
+		auto log = logger::start(logger::cout());
 		logger::log("Started");
 		logger::log("First message");
 		auto thread = std::thread([](){
