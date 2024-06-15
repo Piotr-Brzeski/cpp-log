@@ -1,9 +1,9 @@
 //
-//  object.hpp
+//  object.h
 //  cpp-log
 //
 //  Created by Piotr Brzeski on 2023-10-12.
-//  Copyright © 2023 Brzeski.net. All rights reserved.
+//  Copyright © 2023-2024 Brzeski.net. All rights reserved.
 //
 
 #pragma once
